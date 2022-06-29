@@ -115,7 +115,7 @@ Java Standard Edition
                                     Thread()
                                     Thread(String name)
                                     Thread(Runnable runnable)
-                                    Thread(String name,Runnable runnale)
+                                    Thread(String name,Runnable runnable)
 
                                     void start();
                                     void setName(String);
@@ -127,5 +127,81 @@ Java Standard Edition
                                     static Thread currentThread();
 
             Object                  wait(),notify(),notifyAll(),yeild()
+
+            Synchronization,Concurrency API
+
+            ProblemStatmeent
+                model Bus having a fixed nubmer of seats.(say 25)
+
+                ReservationRunnable that will accept number of seats to be reserved and should 
+                reserve one seat at a time.
+
+                three instances of the ReservationRunnable each needing say 10 seats
+                and achive the reseravation without any conflict.
+
+    java.time
+    
+        LocalDate               .now(),.of(year,Month,day)
+        LocalDateTime           .now(),.of(year,Month,day,hour,minute,second)
+        ZonedDateTime           .now(Zones.of("GMT+3"))
+        Period                  .between(startLocalDate,endLocalDate)
+        Duration                .between(startLocalDateTime,endLocalDateTime)
+        DateTimeFormatter       .ofPattern("dd-MM-yyyy hh:mm:ss")
+    
+                localDateObj.format(dtfObj)
+                LocalDate.parse(dtStr,dtfObj)
+
+    java.util
+        generics, collections, lamdba expressions, stream api
+
+        class Swapper<T>{
+            public void doSwap(T a,T b){
+                T t=a;
+                a=b;
+                b=t;
+            }
+        }
+
+        Swapper<Integer> intSwap = new Swapper<>();
+        Swapper<Double> dblSwap = new Swapper<>();
+        Swapper<String> strSwap = new Swapper<>();
+        Swapper<Employee> empSwap = new Swapper<>();
+
+        Collections API
+
+            Collectiom              add(element),remove(element),boolean isEmpty(),int size()
+                |-List              element get(index),add(index,eleemnt),replace(index,element) ..
+                |               linear data structure where index based operations are possible
+                |               any number of null and duplicates can be added
+                |-Set           non-linear data strucutre where index based operations are not possible
+                                only one null can be added, no duplicates are allowed
+
+
+                List implementation
+                        Vector      growable array and is thread safe
+                        ArrayList   growable array but is not thread safe
+                        LinkedList  doubly linked list data structure
+
+                Set Implementation
+                        HashSet             does not follow any retrival oreder
+                        LinkedHashSet       follow the entry order for retrival
+                        TreeSet             follow the sorted order for retrival
+
+
+                Object that implement Comaprable are only allowed into a TreeSet
+                Or otherwise we have pass an object of Comparator into the treeset
+            
+            Map                 put(key,value),replace(key,value),value get(key),
+               |                boolean containsKey(key),keySet()
+               |-SortedMap 
+
+                Map implementations
+                    HashMap             does not follow any retrival oreder
+                    LinkedHashMap       follow the entry order for retrival
+                    TreeMap             follow the sorted order for retrival
+
+    java.io, java.nio
+        input output streams
+
 
             
