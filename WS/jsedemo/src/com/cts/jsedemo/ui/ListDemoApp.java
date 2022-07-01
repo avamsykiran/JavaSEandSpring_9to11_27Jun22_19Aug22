@@ -37,8 +37,18 @@ public class ListDemoApp {
 			System.out.println(emp);
 
 		System.out.println("-----------------------------------------------------------------------");
-
 		Collections.sort(emps,new EmployeeComparator());
+		for (Employee emp : emps)
+			System.out.println(emp);
+
+		System.out.println("-----------------------------------------------------------------------");
+		Collections.sort(emps,(e1,e2) -> e1.getFullName().compareTo(e2.getFullName()));
+		for (Employee emp : emps)
+			System.out.println(emp);
+		
+		System.out.println("-----------------------------------------------------------------------");
+
+		Collections.sort(emps,(e1,e2) -> e1.getJoinDate().compareTo(e2.getJoinDate()));
 		for (Employee emp : emps)
 			System.out.println(emp);
 

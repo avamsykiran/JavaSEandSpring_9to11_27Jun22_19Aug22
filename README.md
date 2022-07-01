@@ -203,5 +203,74 @@ Java Standard Edition
     java.io, java.nio
         input output streams
 
+    Streams API
 
+        Functional Interface
+            is an interface having only one abstract method.
+
+            @FunctionalInterface
+            interface MyInterface{
+                int operate(int x);
+            }
+
+            class MyInterfaceImpl impleemnts MyInterface{
+                public int operate(int x){
+                    return x*x;
+                }
+            }
+
+            MyInterface myObj = new MyInterfaceImpl();
+            System.out.println(myObj.operate(5));
             
+            MyInterface myObj2 = new MyInterface(){
+                public int operate(int x){
+                    return x/2;
+                }
+            };
+            System.out.println(myObj2.operate(5));
+
+        Lambda Expressions
+
+            MyInterface myObj3 = n -> Math.pow(n,n); 
+            System.out.println(myObj3.operate(5));
+
+        Functional Interfaces are called
+                Suppliers   when the underlying abstract method returns value but has no args        
+                Consumers   when the underlying abstract method does not return value but has args
+                Predicates  when the underlying abstract method returns boolean always
+                Operators
+
+                java.util.function
+
+        Stream API provide functional programming.
+
+            Stream means flow of data.
+
+            Stream needs a source to flow and any list/set/map/array can be such source.
+
+            java.util.stream.Stream
+
+            Stream s1 = Stream.of(val1,val2,val3,.......)
+            Stream s2 = Arrays.stream(new Employee[] {emp1,emp2,emp3...})
+            Stream s3 = listObj.stream();
+            Stream s4 = setObj.stream();
+
+
+                forEach     accepts a consumer and executes the cosnuer on each ele of the stream
+                reduce      accepts a BianryOperator and reduces the whole stream into a single value
+                collect     accepts a Collector and is used to collect all the 
+                                ele in the stream into a collection
+
+                map         accepts an operator and executes that on each value of the stream
+                            and returns a new stream containing the results.
+                filter      accepts a predicate and executes the predicate on each valeu of the stream
+                            and returns a new stream of values that pass the givne predicate
+                
+
+    Assignment
+
+        List<Txn> txns = new ArrayList<>();
+
+        //Each txn has txId,description,amount,txnDate,txnType (CREDIT/DEBIT)
+
+        totalCredit,totalDebit, and balance
