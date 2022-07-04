@@ -266,7 +266,6 @@ Java Standard Edition
                 filter      accepts a predicate and executes the predicate on each valeu of the stream
                             and returns a new stream of values that pass the givne predicate
                 
-
     Assignment
 
         List<Txn> txns = new ArrayList<>();
@@ -274,3 +273,52 @@ Java Standard Edition
         //Each txn has txId,description,amount,txnDate,txnType (CREDIT/DEBIT)
 
         totalCredit,totalDebit, and balance
+
+JPA and Hibernate
+===================================================================================================
+
+    Java Persistence API
+    Java Transaction API
+
+                            Object Relational Mapping
+
+                        OOPs                            RDBMS
+                        -------------------------------------------------------------------------
+    EntityDef           Class                           Table
+    Entity              object                          Record/Row/Tuple
+    Property            fields                          Column
+    Behaviour           methods                         --------
+
+    Is A                inheretence                     Single Table
+                                                        Join Table
+                                                        Table Per Class
+    Has A
+     OnetoOne           reference objects               joins
+     OneToMany
+     ManyToOne
+     ManytoMany
+
+    JPA Configuaration
+
+        where abouts of the database is configuared in a file called 
+        'META-INF/persistence.xml'
+
+    JPA
+        @Entity
+        @Table(name="")
+
+        @Id
+        @Column
+        @Transiant
+
+
+    JPA API
+            Persistence
+            EntityManagerFactory
+            EntityManager
+                .persist
+                .merge
+                .remove
+                .find
+                .query("JPQL qry")
+                
