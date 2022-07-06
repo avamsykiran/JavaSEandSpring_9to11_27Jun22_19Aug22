@@ -322,3 +322,11 @@ JPA and Hibernate
                 .find
                 .query("JPQL qry")
                 
+
+        Movie  <--ManyToMany--> Artists
+
+        Movie  
+                <--OneToMany-->     
+                                Roles       
+                <--OneToMany-->     
+        Artists

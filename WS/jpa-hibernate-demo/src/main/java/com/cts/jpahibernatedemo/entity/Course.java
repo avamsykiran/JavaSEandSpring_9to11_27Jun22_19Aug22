@@ -1,9 +1,14 @@
 package com.cts.jpahibernatedemo.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +20,9 @@ public class Course {
 	private Long crId;
 	private String crName;
 	
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "course")
+	private Set<Trainee> trainees;
+	
 	public Course() {
 		// TODO Auto-generated constructor stub
 	}
@@ -23,6 +31,13 @@ public class Course {
 		super();
 		this.crId = crId;
 		this.crName = crName;
+	}
+
+	public Course(Long crId, String crName, Set<Trainee> trainees) {
+		super();
+		this.crId = crId;
+		this.crName = crName;
+		this.trainees = trainees;
 	}
 
 	public Long getCrId() {
@@ -39,6 +54,14 @@ public class Course {
 
 	public void setCrName(String crName) {
 		this.crName = crName;
+	}
+
+	public Set<Trainee> getTrainees() {
+		return trainees;
+	}
+
+	public void setTrainees(Set<Trainee> trainees) {
+		this.trainees = trainees;
 	}
 
 	@Override
