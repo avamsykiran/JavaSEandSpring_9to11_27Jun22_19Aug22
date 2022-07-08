@@ -58,7 +58,7 @@ public class LabComputer {
 
 	@Override
 	public String toString() {
-		return "LabComputer [assetId=" + assetId + ", computerConfig=" + computerConfig + ", owner=" + owner + "]";
+		return "LabComputer [assetId=" + assetId + ", computerConfig=" + computerConfig + "]";
 	}
 	
 	
