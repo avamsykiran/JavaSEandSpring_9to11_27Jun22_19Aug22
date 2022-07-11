@@ -330,3 +330,110 @@ JPA and Hibernate
                                 Roles       
                 <--OneToMany-->     
         Artists
+
+Spring Framework
+==================================================================================================
+
+    is a not shell of a varity of modules. It is a perfect development platform for java EE application.
+
+    -> Light weight and highly modular
+
+            Spring Core             Dependency Injection
+            Spring SpEL             Spring Expression Language
+            Spring Context          Autowiring and externalized configs
+            Spring AOP              Aspect Oriented Programming
+            Spring Data JDBC        Spring uspport for JDBC through JdbcTemplate
+            Spring Data JPA         Spring support for JPA
+            Spring Boot             Rapid Application Development through auto-configuaration
+            Spring Web              Web MVC and Rest api
+            Spring Security         Autherization and Authentication
+            Sprint Test             Testing unit and integration
+            Spring Cloud            Cloud based tools for Microservices
+            Spring Batch            Batch Processing ....
+            .....etc
+
+    -> Interoperable o  Puggable
+
+    Spring Core, SpEL and Context
+    --------------------------------------------------------------------------------------
+
+        support for all other spring module 
+        offers Dependency Injection.
+
+        interface EmployeeDAO{
+
+        }
+
+        class EmployeeDAOJdbcImpl implements EmployeeDAO {
+
+        }
+
+        class EmployeeDAOJpaImpl implements EmployeeDAO {
+
+        }
+
+        interface EmployeeService {
+
+        }
+
+        class EmployeeServiceImpl implements EmployeeService {
+            private EmployeeDAO empDao;
+
+            public EmployeeServiceImpl(EmployeeDAO empDao){
+                //this.empDao = new EmployeeDAOJdbcImpl();
+                this.empDao = empDao;
+            }
+
+            public void setEmpDao(EmployeeDAO empDao){
+                this.empDao = empDao;
+            }
+        }
+
+        EmpployeeService empService1 = new EmployeeServiveImpl(new EmployooDAOJdbcImpl());  //constructor injection
+        empService1.setEmpDao(new EmployeeDAOJpaImpl()); //setter injection
+
+        
+        Dependency Injection is a concrete method of the idea Inversion of Control
+
+            Component       is any class in an application that offers a fe functions needed by the application.
+                            all services, daos, controllers, utility classes .....etc
+
+            Bean            is an object of a component whose life cycle is managed by a container, but by the application.
+
+            Container       is the one that creates, supply , destroys the beans of the components.
+
+        Spring Containers
+            BeanFactory             Spring Core
+            ApplictionContext       Spring Context      
+
+                ApplicationContext is more advanced than beanfactory. ApplicationContext offers AutoWiring whihc is
+                not possible through BeanFactory.
+
+        Bean Configuaration
+            is to inform the container - how many componetns we ahve and which bean is dependent of which other bean.
+
+            Xml Based Configuaration
+
+            Java Based Configuaration
+
+                the mehtod name is used as bean id.
+
+                @Configuration
+                public class BeanConfig {
+
+                    @Bean
+                    public Scanner scanner(){
+                        return new Scanner(System.in);
+                    }
+
+                    @Bean
+                    public LocalDate today(){
+                        return LocalDate.now();
+                    }                    
+
+                }
+
+            Annotation Based Configuaration
+
+                @Component("beanId")
+                @ComponentScan("base-package")
