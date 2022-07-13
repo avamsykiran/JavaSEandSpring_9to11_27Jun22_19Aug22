@@ -436,4 +436,27 @@ Spring Framework
             Annotation Based Configuaration
 
                 @Component("beanId")
+                    @Service
+                    @Repository
+                    ...etc
                 @ComponentScan("base-package")
+
+                @Autowired
+                    applied on the field                            field injection
+                    applied on a constructor having an argument     constructor injection  byConstructor
+                    applied on a setter method                      setter injection
+
+                    byType  map the beans with a field if they both are of the same type.
+
+                @Qualifier
+                    byName  map the beans with a field through the bean name.
+                
+                @Value and Spring Expression Language      
+                    used to inject a key from a .properties file into our primitive or String field
+
+                @PropertySource
+
+                @Scope("singleton|prototype|request|session|global-session")
+
+                @PostConstruct      is applied a init-method that has to execute after mapping of all fields
+                @PreDestroy         is applied on a destroy-mehtod to be invoekd jsut before destroying our bean.
