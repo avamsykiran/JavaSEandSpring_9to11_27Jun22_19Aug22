@@ -352,7 +352,7 @@ Spring Framework
             Spring Batch            Batch Processing ....
             .....etc
 
-    -> Interoperable o  Puggable
+    -> Interoperable Puggable
 
     Spring Core, SpEL and Context
     --------------------------------------------------------------------------------------
@@ -459,4 +459,33 @@ Spring Framework
                 @Scope("singleton|prototype|request|session|global-session")
 
                 @PostConstruct      is applied a init-method that has to execute after mapping of all fields
-                @PreDestroy         is applied on a destroy-mehtod to be invoekd jsut before destroying our bean.
+                @PreDestroy         is applied on a destroy-method to be invoked jsut before destroying our bean.
+
+    Spring Boot
+    --------------------------------------------------------------------------------------
+
+        offers auto configuration, that results in Rapid Application Development.
+
+        Spring Starter Project
+            1. using http://start.spring.io
+            2. using STS spring starter project wizard
+            3. using STS CLI
+
+
+        @SpringBootApplication  =   @Configuration
+                                    @ComponentScan("thePackageInWhichTheSringBootApplciationClassExists")
+                                    @PorpertySource("classpath:application.properties")
+
+        SpringApplication.run(...)
+            Going To Create an ApplicationContext
+            Executing all the Runners
+            Start the Embeded Servers if any...
+
+            Shutdown the Servers and Closes the ApplicationContext
+
+        Spring Runners
+            CommandLineRunner       public abstract void run(String ...arg);
+            ApplicationRunner       public abstract void run(SpringApplciationArguments args);
+
+        
+    
