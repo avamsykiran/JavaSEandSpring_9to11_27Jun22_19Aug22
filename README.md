@@ -487,5 +487,18 @@ Spring Framework
             CommandLineRunner       public abstract void run(String ...arg);
             ApplicationRunner       public abstract void run(SpringApplciationArguments args);
 
-        
+    Spring Data JPA
+    --------------------------------------------------------------------------------------------------------
+
+        is a Spring Framework module that provides automatic dynamic implmeentation for jpa based repositories.
+
+        CrudRepository
+         | - JpaRepository
+
+        @Transactional
+
+        existsBy
+        findBy
+        findAllBy
     
+        @Query
