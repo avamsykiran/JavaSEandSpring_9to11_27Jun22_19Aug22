@@ -502,3 +502,60 @@ Spring Framework
         findAllBy
     
         @Query
+
+    Spring Web
+    --------------------------------------------------------------------------------------------------------
+
+        is another spring framework module that supports MVC web applications adn REST api applications.
+
+        Spring Web on spring Boot is offered by org.springframework:spring-boot-web-starter package.
+
+        Spring Web comes with a preconfigured WebApplicationContext and Web Application Runner which
+        launches an embed tomcat server.
+
+        Spring Web MVC
+
+            single front controller MVC 
+
+                Repo(s) <---> Service(s) <---> Controller(s) <---> FrontController <------- REQ ----- Client
+                                                                        |
+                                                                        |model
+                                                                        |
+                                                                        ↓
+                                                                        View(s) --------------- RESP--->
+
+                FrontController             DispatcherServlet
+                                            With the help of UrlResolver it maps a req to a controller
+                                            The controller after processing the req will share a model 
+                                            and viewName with the FrontController
+                                            With the help of ViewResolver it maps a viewName with a view.
+                                            FrontController will share the model with the view and the response is sent
+
+                UrlResolver                 SimpleUrlResolver                   by default on spring boot
+                                                @RequestMapping                 is used here to map a controller
+                                                                                and action with a url.
+                                                    @GetMapping
+                                                    @PostMApping
+                                                    @PutMapping
+                                                    @PatchMapping
+                                                    @DeleteMapping ...etc
+                                            ControllerBeanNameUrlResolver
+                                            ...etc
+                
+                ViewResolver                XmlBeanResourceViewResolver
+                                            MessageBeanResourceViewResolver
+                                            InternalResourceViewResolver          by default on spring boot
+
+                                                    prefix and suffix             config..d in application.properties
+
+                                                    actualView = prefix + viewName + suffix
+
+                Controller                  is any POJO annoted as @Controller
+                                            a controller can have method called actions to process a request
+                                            these action method must return 
+                                                        either a viewName as String
+                                                        or an object of ModelAndView class holding the models and a viewName
+                                            these action method are injected with the data from the request using
+                                            @RequestParam or @PathVariable or @ModelAttribute
+
+
