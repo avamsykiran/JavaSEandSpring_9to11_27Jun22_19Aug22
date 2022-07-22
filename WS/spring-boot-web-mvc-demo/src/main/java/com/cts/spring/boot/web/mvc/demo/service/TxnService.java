@@ -8,6 +8,6 @@ public interface TxnService {
 
 	Txn getById(Long id);
 	List<Txn> getAll();
-	Txn add(Txn txn);
+	Txn save(Txn txn);
 	void remove(Long txnId);
 }

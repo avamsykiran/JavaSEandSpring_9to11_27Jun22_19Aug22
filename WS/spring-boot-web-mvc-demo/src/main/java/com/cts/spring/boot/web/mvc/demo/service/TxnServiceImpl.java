@@ -25,7 +25,7 @@ public class TxnServiceImpl implements TxnService {
 	}
 
 	@Override
-	public Txn add(Txn txn) {
+	public Txn save(Txn txn) {
 		return txnRepo.save(txn);
 	}
 

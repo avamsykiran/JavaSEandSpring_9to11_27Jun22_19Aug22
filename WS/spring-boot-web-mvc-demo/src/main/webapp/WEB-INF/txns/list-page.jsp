@@ -18,7 +18,8 @@
 						<th>Date</th>
 						<th>Description</th>
 						<th>Credit</th>
-						<th>Debit</th>						
+						<th>Debit</th>					
+						<th>ACTION</th>	
 					</tr>
 				</thead>
 				<tbody>
@@ -29,6 +30,10 @@
 							<td>${t.description }</td>
 							<td style="text-align:right">${t.type==TxnType.CREDIT?String.valueOf(t.amount):""}</td>
 							<td style="text-align:right">${t.type==TxnType.DEBIT?String.valueOf(t.amount):""}</td>
+							<td>
+								<a href="/txns/edit?txnId=${t.txnId }">EDIT</a> <span> | </span>
+								<a href="/txns/del?txnId=${t.txnId }">DELETE</a>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>

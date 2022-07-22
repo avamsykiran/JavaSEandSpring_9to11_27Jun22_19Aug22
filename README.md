@@ -558,4 +558,65 @@ Spring Framework
                                             these action method are injected with the data from the request using
                                             @RequestParam or @PathVariable or @ModelAttribute
 
+        
+        Rest Web Service
 
+            a web service is a public hsoted buiness logic that can be invoked from a remote system.
+
+                                                                                | <- Andriod APP
+            DAO <-> SERVICE <-> WebServiceController    <--REQ -                | <- Angular APP
+                                                        --DATA AS RESP -->      | <- Dynamic Web APP
+                                                                                | <- React APP ...etc.,
+
+                SOAP Web Service
+                
+                    1. xml is only means of exchanging data
+                
+                HTTP Web Service / REpresentational State Transfer API (REST api)
+
+                    1. xml/json/binary/text..etc., to serve as a means of data exchange
+                    2. have a designed HTTP STATUS system to signal success or failure of a request
+
+                            100 to 199      a request is recived and is under process
+                            300 to 399      a request is being redirected
+
+                            200 to 299      a request is processed successfully
+                                            200     OK          if a retirval is successful
+                                            201     CREATED     if an insertion is successful
+                                            203     ACCEPTED    if an updation is successful
+                                            204     NO CONTENT  if a deletion is successful
+
+                            400 to 499      a request failed due to a client side error
+                                            400     BAD REQUEST if an insertion/updation fialed due to
+                                                                validation issues etc.,
+
+                                            404     NOT FOUND   if a deletion / retirval fails as the record is not found
+
+                            500 to 599      q request failed due to a server side error
+                                            500     INTERNAL SERVER ERROR       we ahve any unhandled exceptions
+
+                    3. have a set of HTTP Methods each mapped to a CRUD operation reducing the need for multiple urls 
+                       for CRUD Operations
+
+                        /txns       GET         retrive
+                                    POST        insert
+                                    PUT         update
+                                    DELETE      delete
+
+        Spring Web REST
+
+            @RestController =   @Controller + @ResponseBody
+
+            @RestControllerAdvice
+            @ExceptionHandler
+
+            @PathVariable
+            @RequestBody
+
+            ResponseEntity  is an encapsualtion of responseBody and httpStatus
+
+            REST Client to verify our rest api end points
+                PostMan
+                Insomnia   https://updates.insomnia.rest/downloads/windows/latest?app=com.insomnia.app&source=website
+
+            

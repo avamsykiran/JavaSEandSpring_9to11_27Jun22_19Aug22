@@ -7,5 +7,6 @@
  	<h3>${webTitle }</h3>
  	<hr />
  	<a href="/">Home</a> <span> |</span>
- 	<a href="/txns/list">Income Statement</a> 
+ 	<a href="/txns/list">Income Statement</a><span> |</span>
+ 	<a href="/txns/add">New Txn</a> 
  	<hr />

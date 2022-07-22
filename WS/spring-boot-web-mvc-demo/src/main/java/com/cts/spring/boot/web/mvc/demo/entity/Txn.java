@@ -9,6 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 
 @Entity
 @Table(name="txns")
@@ -17,9 +26,20 @@ public class Txn {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long txnId;
+	
+	@NotBlank(message = "This field is mandate")
+	@Size(min = 4,max = 20,message = "A minimum of 4 and a maximum of 20 chars expected")
 	private String description;
+	
+	@NotNull (message="This field is mandate")
+	@Min(value = 1,message = "Zero or Negative valeus not expected")
 	private Double amount;
+	
+	@DateTimeFormat(iso=ISO.DATE)
+	@PastOrPresent(message = "Can not be of future")
 	private LocalDate txnDate;
+	
+	@NotNull (message="This field is mandate")
 	@Enumerated(EnumType.STRING)
 	private TxnType type;
 	
