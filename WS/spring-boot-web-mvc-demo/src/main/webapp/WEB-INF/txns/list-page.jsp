@@ -1,4 +1,4 @@
-<%@page import="com.cts.spring.boot.web.mvc.demo.entity.TxnType" %>
+<%@page import="com.cts.spring.boot.rest.api.demo.entity.TxnType" %>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 
 <jsp:include page="/header" />

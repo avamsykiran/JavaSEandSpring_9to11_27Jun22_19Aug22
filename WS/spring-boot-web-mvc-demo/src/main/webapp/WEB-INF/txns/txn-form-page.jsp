@@ -1,4 +1,4 @@
-<%@page import="com.cts.spring.boot.web.mvc.demo.entity.TxnType" %>
+<%@page import="com.cts.spring.boot.rest.api.demo.entity.TxnType" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <jsp:include page="/header" />
