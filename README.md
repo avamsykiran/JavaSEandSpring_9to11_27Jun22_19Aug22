@@ -619,4 +619,114 @@ Spring Framework
                 PostMan
                 Insomnia   https://updates.insomnia.rest/downloads/windows/latest?app=com.insomnia.app&source=website
 
+        IncomeStatement Case Study
+
+            1. Various AccoutnHolders can register themselves
+            2. Each AccountHolder can add/edit/delete the Txns made day to day
+            3. Each AccountHolder must be able to generate a monthly or annual IncomeStatement
+            4. That IncoemStatement must have the statement summary [totalCredit,totalDebit and statementBalance]
+
+        Mono-Lithic Applications
+
+            income-statment
+                entity
+                    AccountHolder
+                        aid:long,fullName:string,mobile:string,currentBal:double,txns:Set<Txn>
+                    Txn
+                        tid:long,amount:double,desp:string,tdate:LocalDate,type:TxnType,owner:AccoutnHolder
+                repo
+                    AccountHolderRepo
+                    TxnRepo
+                service
+                    AccoutnHolderService
+                    TxnService
+                controller
+                    AccountHolderController
+                    TxnController
+
+                income-statement.jar
+
+            - are huge and any alteration needs a lot care and attention, it needs that each and every stakeholder
+                need to have the idea of the BigPicutre of the app.
+            - lack the possibility of adopting to new technologies.
+            - granular scalability is not possible.
+        
+        Microservices
+
+            is a eco0system of inter-communicting isolated individual indepent applications.
+                where each of such application is called a micro-service
+
+            income-statement-account-service.jar        registrations of account holders
+            incoem-statement-txns-service.jar           create/update/delete operation on Txn
+            income-statement-statement-service.jar      generating monthly or annual statment
+
+            + a microservice is comaprtivly a very small unit and can be mnaged with great ease of effort.
+            + a microservice can be independnently scaled thus promoting granualar scalability
+            + adopting to new technology is far more easy and effortless.
+            + each mciroservice can be of a different platform of developemnt.
+
+            Chanllenges
+            ? On what basis and how doe we divide a product into micro-services (how many and why??)
+            ? Observing and Monitoring acros multiple microservices
+            ? Maintain Configuration across multiple microservices
+            ? Database facilitation
+            ? Transacton Management across multiple microservices
             
+        Microservices Design Pattern
+
+            Decompositon Desing Patterns
+                Decomposition by Domain
+                Decomposition by Sub-domain
+            Database Design Pattern
+                Single Database Design Pattern
+                Database per service Design Pattern
+                CQRS Design Pattern
+                Saga Design Pattern
+            Integration Design Pattern
+                Aggregator Desing Pattern
+                Client Side Component Design Pattern
+                API Gateway Design Pattern
+            Performence Monitoring Design Patterns
+                Log Aggregation Design Pattern
+                Performence Aggregation Design Pattern
+                Distributed Tracing Design Pattern
+            Cros-Cutting Desing Pattern
+                Discovery Service Design Pattern
+                Load Balance Design Pattern
+                Circuit Breaker Design Pattern
+
+            Decomposition by Domain
+                a doamin is a unit of functionality or feautre of an application. Generally each module of
+                a monolithic applciation can become a potential domain.
+
+                income-statement
+                    accounts-service
+                    txns-service
+                    statement-service
+
+            Decomposition by Sub - Domain
+                talks about god classes. GOD classes that those that are needed almost in every micro-service.
+                These god classes are guided by the sub-domain or bounded-context.
+                
+                income-statement
+                    accounts-service
+                        AccountHolder
+                            aid:long,fullName:string,mobile:string
+                    
+                    txns-service
+                        AccountHolder
+                            aid:long,currentBal:double,txns:Set<Txn>
+                    
+                        Txn
+                            tid:long,amount:double,desp:string,tdate:LocalDate,type:TxnType,owner:AccoutnHolder
+                    
+                    statement-service
+                        AccountHolder
+                            aid:long,fullName:string,mobile:string,currentBal:double
+                    
+                        Txn
+                            tid:long,amount:double,desp:string,tdate:LocalDate,type:TxnType
+                    
+                        Statement
+                            startDate:LocalDate,endDate:LocalDate,totalCredit:double,totalDebit:double,statementBal:dobule,
+                            txns:Set<Txn>,holder:AccountHolder
