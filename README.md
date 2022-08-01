@@ -683,7 +683,7 @@ Spring Framework
                 CQRS Design Pattern
                 Saga Design Pattern
             Integration Design Pattern
-                Aggregator Desing Pattern
+                Aggregator Design Pattern
                 Client Side Component Design Pattern
                 API Gateway Design Pattern
             Performence Monitoring Design Patterns
@@ -700,27 +700,27 @@ Spring Framework
                 a monolithic applciation can become a potential domain.
 
                 income-statement
-                    accounts-service
-                    txns-service
-                    statement-service
+                    profiles
+                    txns
+                    statement
 
-            Decomposition by Sub - Domain
+            Decomposition by Sub - Domain, Aggregator Design Pattern
                 talks about god classes. GOD classes that those that are needed almost in every micro-service.
                 These god classes are guided by the sub-domain or bounded-context.
                 
                 income-statement
-                    accounts-service
+                    profiles
                         AccountHolder
                             aid:long,fullName:string,mobile:string
                     
-                    txns-service
+                    txns
                         AccountHolder
                             aid:long,currentBal:double,txns:Set<Txn>
                     
                         Txn
                             tid:long,amount:double,desp:string,tdate:LocalDate,type:TxnType,owner:AccoutnHolder
                     
-                    statement-service
+                    statement (aggregator - collection data form other micro-services and composing it into one single resposne)
                         AccountHolder
                             aid:long,fullName:string,mobile:string,currentBal:double
                     
@@ -730,3 +730,37 @@ Spring Framework
                         Statement
                             startDate:LocalDate,endDate:LocalDate,totalCredit:double,totalDebit:double,statementBal:dobule,
                             txns:Set<Txn>,holder:AccountHolder
+
+            Discovery Service Design Pattern, client side load balancer
+
+                         (eureka service)   
+                        discovery -------------|
+                        ↑ ↑ ↑                  | 
+             (register) | | |                  | 
+                        | | |-profiles ←-------| (fetech the details of other services )
+                        | |                    | (Spring Cloud Laod Balancer)
+                        | |--txns ←------------|
+                        |                      | 
+                        |---statement ←--------|
+
+            API Gateway Design Pattern
+
+                     (eureka service)   
+        |--------------- discovery
+        |                ↑↓  ↑↓  ↑↓                
+        |        --------||  ||  ||----------------
+        |        ||          ||                  ||
+        |        ↑↓          ↑↓                  ↑↓ 
+        |    profiles ----  txns  ---------   statement
+        |        ||          ||                  ||
+        |        ↑↓          ↑↓                  ↑↓ 
+        |        --------||  ||  ||----------------
+        |                ↑↓  ↑↓  ↑↓                
+        |-------------  api-gateway
+                    (spring cloud gateway)
+                            ||
+                            ||
+                            ↑↓
+                     Client Applciations
+                (AndroidApp,AngularAPP,REACT-APP)
+

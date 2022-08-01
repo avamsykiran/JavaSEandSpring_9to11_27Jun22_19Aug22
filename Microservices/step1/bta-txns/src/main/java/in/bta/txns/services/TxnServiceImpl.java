@@ -85,8 +85,19 @@ public class TxnServiceImpl implements TxnService {
 		return txnRepo.save(txn);
 	}
 
+	@Transactional
 	@Override
 	public void deleteById(Long txnId) throws TxnException {
+		if (!txnRepo.existsById(txnId))
+			throw new TxnException("Txn not found to delete");
+
+		Txn oldTxn = txnRepo.findById(txnId).orElse(null);
+		AccountHolder ah = oldTxn.getHolder();
+		double cb = ah.getCurrentBalance();
+		cb = oldTxn.getType() == TxnType.CREDIT ? cb - oldTxn.getAmount() : cb + oldTxn.getAmount();
+		ah.setCurrentBalance(cb);
+		ahRepo.save(ah);
+
 		txnRepo.deleteById(txnId);
 	}
 
