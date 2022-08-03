@@ -694,6 +694,7 @@ Spring Framework
                 Discovery Service Design Pattern
                 Load Balance Design Pattern
                 Circuit Breaker Design Pattern
+                External Cofniguration Design Pattern
 
             Decomposition by Domain
                 a doamin is a unit of functionality or feautre of an application. Generally each module of
@@ -745,22 +746,86 @@ Spring Framework
 
             API Gateway Design Pattern
 
-                     (eureka service)   
-        |--------------- discovery
-        |                ↑↓  ↑↓  ↑↓                
-        |        --------||  ||  ||----------------
-        |        ||          ||                  ||
-        |        ↑↓          ↑↓                  ↑↓ 
-        |    profiles ----  txns  ---------   statement
-        |        ||          ||                  ||
-        |        ↑↓          ↑↓                  ↑↓ 
-        |        --------||  ||  ||----------------
-        |                ↑↓  ↑↓  ↑↓                
-        |-------------  api-gateway
-                    (spring cloud gateway)
-                            ||
-                            ||
-                            ↑↓
-                     Client Applciations
-                (AndroidApp,AngularAPP,REACT-APP)
+                            (eureka service)   
+                |--------------- discovery
+                |                ↑↓  ↑↓  ↑↓                
+                |        --------||  ||  ||----------------
+                |        ||          ||                  ||
+                |        ↑↓          ↑↓                  ↑↓ 
+                |    profiles ----  txns  ---------   statement
+                |        ||          ||                  ||
+                |        ↑↓          ↑↓                  ↑↓ 
+                |        --------||  ||  ||----------------
+                |                ↑↓  ↑↓  ↑↓                
+                |-------------  api-gateway
+                            (spring cloud gateway)
+                                    ||
+                                    ||
+                                    ↑↓
+                            Client Applciations
+                        (AndroidApp,AngularAPP,REACT-APP)
 
+            Distributed Tracing Design Pattern
+
+                                                        Client Applciations
+                                                (AndroidApp,AngularAPP,REACT-APP)
+                                                                ↑↓
+                                                                |
+                                                                ↑↓    
+                (eureka service)                        (spring cloud gateway)   
+                discovery                                  api-gateway
+                    ↑↓                                          ↑↓                
+                    |<------------------------------------------>|
+                            ||          ||                  ||
+                            ↑↓          ↑↓                  ↑↓ 
+                        profiles ----  txns  ---------   statement
+                        (sleuth)      (sleuth)            (sleuth)
+                            ||          ||                  ||
+                            ↑↓          ↑↓                  ↑↓ 
+                            --------||  ||  ||----------------
+                                    ↑↓  ↑↓  ↑↓                
+                                Disributed Tracing Service
+                                    (zipkin)
+
+            Circuit Breaker Design Pattern     
+
+                    A completed req - resp cycle is called a Circuit
+
+                    Circuit
+                            OPEN         on detecting unavailability of any underlying service,
+                            HALF-OPEN    after a thruhold of time /reuest, anattempt to
+                                         close cirucit is made - if OK, circuit is CLOSED else OPENED
+                            CLOSED       all the underlying services are working fine.
+
+                    Hystrix          is a netflix provided circuit braker library
+                    Reseliance4j     is the recent alternate for Hystrix   
+
+            External Cofniguration Design Pattern
+
+                                                        Client Applciations
+                                                (AndroidApp,AngularAPP,REACT-APP)
+                                                                ↑↓
+                                                                |
+                                                                ↑↓    
+                (eureka service)                        (spring cloud gateway)   
+                discovery                                  api-gateway
+                    ↑↓                                          ↑↓                
+                    |<------------------------------------------>|
+                            ||          ||                  ||
+                            ↑↓          ↑↓                  ↑↓ 
+                        profiles ----  txns  ---------   statement
+                        (sleuth)      (sleuth)            (sleuth)
+                            ||          ||                  ||
+                            ↑↓          ↑↓                  ↑↓              
+                    |<------------------------------------------>|
+                    ↑↓                                          ↑↓   
+            Disributed Tracing Service                      Config Server
+                (zipkin)                                         ↑↓   
+                                                                  |
+                                                                  |
+                                                                  |
+                                                                 ↑↓   
+                                                                GIT REPO
+                                                                    profile.properties
+                                                                    txns.properties
+                                                                    statement.properties  
