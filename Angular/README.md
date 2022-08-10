@@ -89,4 +89,91 @@ Angular 11
             thee tools are javascirpt based tools and hence we need NodeJS to facilate
             execution of these tools, but not to execute your project.
 
+        Angular CLI
 
+            ng new proj-name
+
+            proj-name> npm start
+            proj-name> npm build
+            proj-name> npm test
+
+            proj-name> ng serve 
+            proj-name> ng build
+            proj-name> ng test
+
+            proj-name> ng g module name
+            proj-name> ng g component name --skip-tests
+            proj-name> ng g directive name --skip-tests
+            proj-name> ng g pipe name --skip-tests
+            proj-name> ng g service name --skip-tests
+            proj-name> ng g class name --skip-tests
+            proj-name> ng g interface name --skip-tests
+
+        Angular Archetecture
+
+            any angular resource is a typescript class.
+            each of these classes are marked with decorators related to whta resource it is.
+            the decoraters carry configurational info as a json object and is called meta data.
+
+            Modules
+                an angular module is class that represents a group of
+                components, pipes, services and directives.
+
+                each angular project must be housed inside a top-level module and that module is refered
+                to as ROOT-MODULE
+
+                A ROOT-MODULE furthur can have sub-modules refreed to as FEATURE-MODULES
+
+                @NgModule({
+                    declarations:[ //a list of components,directives and pipes that belong to this module],
+                    imports:[ //a list of sub-modules we have to access in this module],
+                    exports:[ //a list of components,directives and pipes that belong to this module and are allowed to accessed outside this module],
+                    providers:[ //a list of services that belong to this module],
+                    bootstrap:[ //a list of components that have to be initated immediatly after this module is loaded]
+                })
+                class OrdersModule {}
+
+            Components
+                angular offers html extendability. a component is a new html element that we create.
+
+                Component = component.ts + template.html
+
+                @Component({
+                    selector:'tag-name',
+                    templateUrl:'url of the template file'
+                })
+                class ShoppingCartComponent{}
+
+                Data Binding:
+
+                    is about using the field of a component in its template.
+
+                    Interpolation
+                        render the value of a angular expression into the tmeplate.
+                        
+                        {{angular-expression}}
+
+                    One-way data binding
+                        attribute binding
+                        style binding
+                        css class binding
+                    Two-way data binding
+                    event binding
+
+            Directives
+                @Directive({
+                    selector:''
+                })
+                class FastMovingStockDirective{}
+
+            Pipes
+                @Pipe({
+                    name:''
+                })
+                class DigitsToWordsPipe{}
+
+            Services
+                @Injectable({
+                    providedIn:'root'
+                })
+                class OrdersService{}
