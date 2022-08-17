@@ -155,16 +155,56 @@ Angular 11
 
                     One-way data binding
                         attribute binding
+                            
+                            [attribute]="angular-expression"
+
                         style binding
+
+                            [style.cssProperty]="angular-expression"
+
                         css class binding
-                    Two-way data binding
+
+                            [class.className]="boolean-angular-expression"
+                    
                     event binding
 
+                        (event-directive)="method()"
+                    
+                        html-events         onClick onBlur  onFocus onMouseOver onChange...etc
+                        event directives    click   blur    focus   mouseover   change ...etc.,
+
+                    Two-way data binding
+
+                        works only with form controls
+
+                        [(ngModel)]="field"
+
+                        ngModel is a directive defined in a module called FormsModule.
+
+                        FormsModule comes from @angular/forms file.
+                    
+
             Directives
-                @Directive({
-                    selector:''
-                })
-                class FastMovingStockDirective{}
+                is a angular defiend html attribute
+
+                Attribute Directives
+
+                    ngModel,routerLink,click,dblclick,change,blur,readonly,...........etc
+
+                Structural Directives
+
+                    *ngIf
+                    *ngFor
+                    ngSwitch
+                        *ngCase
+                        *ngDefault
+
+                Custome Directives
+                    @Directive({
+                        selector:''
+                    })
+                    class FastMovingStockDirective{}
+
 
             Pipes
                 @Pipe({

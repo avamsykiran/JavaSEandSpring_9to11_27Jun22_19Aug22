@@ -1,0 +1,27 @@
+<section>
+
+    <form>
+        <label>
+            Operand1: 
+            <input type="number" name="fc1" [(ngModel)]="n1" />
+        </label>
+        <label>
+            Operand2: 
+            <input type="number" name="fc2" [(ngModel)]="n2" />
+        </label> 
+        <br />
+        <label><input type="checkbox" name="ch1" [(ngModel)]="showSum" />Show Sum</label>
+        <label><input type="checkbox" name="ch2" [(ngModel)]="showDif" />Show Diff</label>
+        <label><input type="checkbox" name="ch3" [(ngModel)]="showPrd" />Show Product</label>
+        <label><input type="checkbox" name="ch4" [(ngModel)]="showQut" />Show Quoitiont</label>
+        <label><input type="checkbox" name="ch5" [(ngModel)]="showRem" />Show Reminder</label>
+    </form>
+
+    <div>
+        <p *ngIf="showSum">Sum of {{n1}} and {{n2}} is {{n1+n2}}</p>
+        <p *ngIf="showDif">Difference of {{n1}} and {{n2}} is {{n1-n2}}</p>
+        <p *ngIf="showPrd">Product of {{n1}} and {{n2}} is {{n1*n2}}</p>
+        <p *ngIf="showQut">Quitont of {{n1}} and {{n2}} is {{n1/n2}}</p>
+        <p *ngIf="showRem">Reminder of {{n1}} and {{n2}} is {{n1%n2}}</p>
+    </div>
+</section>

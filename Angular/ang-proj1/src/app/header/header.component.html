@@ -1,1 +1,20 @@
-<p>header works!</p>
+<header>
+    <form>
+        <input type="range" name="fc1" [(ngModel)]="logoWidth" min="200" max="500" />
+        <label><input type="checkbox" name="fc2" [(ngModel)]="isCentered" />Center</label>
+        <label><input type="checkbox" name="fc3" [(ngModel)]="isBorderApplied" />Border</label>
+    </form>
+    <div>
+        <img 
+            [src]="logos[logoIndex]" 
+            [style.width.px]="logoWidth" 
+            [class.centered]="isCentered"
+            [class.bordered]="isBorderApplied"
+            (dblclick)="toggleImage()" />
+    </div>
+
+    <ul>
+        <li *ngFor="let x of team">{{x}}</li>
+    </ul>
+
+</header>
