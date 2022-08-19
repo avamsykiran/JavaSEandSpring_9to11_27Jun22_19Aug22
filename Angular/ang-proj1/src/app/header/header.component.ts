@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GreetService } from '../greet.service';
 
 @Component({
   selector: 'app-header',
@@ -6,6 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+
+  userName:string;
+  greeting:string;
 
   logos:string[];
   logoIndex:number;
@@ -16,7 +20,11 @@ export class HeaderComponent {
 
   team:string[];
 
-  constructor() { 
+  constructor(private gs:GreetService) { 
+
+    this.userName="Somebody";
+    this.greeting=gs.greetUser(this.userName);
+
     this.logoIndex=0;
     this.logos=[
       "assets/imgs/w1.png",
@@ -38,4 +46,7 @@ export class HeaderComponent {
     }
   }
 
+  updateGreeting(){
+    this.greeting=this.gs.greetUser(this.userName);
+  }
 }

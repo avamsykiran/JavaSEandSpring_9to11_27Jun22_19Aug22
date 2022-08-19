@@ -1,10 +1,12 @@
 <header>
     <form>
+        <input type="text" name="fc" [(ngModel)]="userName" (change)="updateGreeting()" />
         <input type="range" name="fc1" [(ngModel)]="logoWidth" min="200" max="500" />
         <label><input type="checkbox" name="fc2" [(ngModel)]="isCentered" />Center</label>
         <label><input type="checkbox" name="fc3" [(ngModel)]="isBorderApplied" />Border</label>
     </form>
     <div>
+        <p><strong>{{greeting}}</strong></p>
         <img 
             [src]="logos[logoIndex]" 
             [style.width.px]="logoWidth" 

@@ -1,0 +1,17 @@
+<section>
+    <form (ngSubmit)="startSeries()">
+        <label>Lower Bound: <input type="number" [(ngModel)]="lb" name="lb" required/></label>
+        <label>Upper Bound: <input type="number" [(ngModel)]="ub" name="ub" required/></label>
+        <button [disabled]="isJobRunning">Start Series</button>
+    </form>
+    <div *ngIf="errMsg">
+        <p>
+            <strong>{{errMsg}}</strong>
+        </p>      
+    </div>
+    <div *ngIf="results && results.length>0">
+        <span *ngFor="let n of results">
+            {{n}} 
+        </span>
+    </div>
+</section>

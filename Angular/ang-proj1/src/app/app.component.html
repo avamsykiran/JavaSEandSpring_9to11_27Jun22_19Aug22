@@ -1,3 +1,8 @@
 <h3>{{title}}</h3>
-<app-header></app-header>
-<app-arth></app-arth>
+<nav>
+    <a routerLink="/header" routerLinkActive="active">Home</a>
+    <a routerLink="/arth" routerLinkActive="active">Arithmetics Demo</a>
+    <a routerLink="/pd" routerLinkActive="active">Pipes Demo</a>
+    <a routerLink="/nss" routerLinkActive="active">Observables Demo</a>
+</nav>
+<router-outlet></router-outlet>

@@ -205,15 +205,76 @@ Angular 11
                     })
                     class FastMovingStockDirective{}
 
-
             Pipes
+                to transform data before it gets rendered.
+
+                lowercase
+                uppercase
+                titlecase
+                number
+                currency
+                date
+
+                
                 @Pipe({
                     name:''
                 })
-                class DigitsToWordsPipe{}
+                class DigitsToWordsPipe implments PipeTransform {
+                    transfrom(value:any) : any {
+                        //.............
+                    }
+                }
+
+                {{data|pipeName}}
 
             Services
                 @Injectable({
                     providedIn:'root'
                 })
                 class OrdersService{}
+
+        Angular Routing
+
+            RouterModule        from @angular/routing
+
+                Route           {
+                                    path:'',
+                                    component:ComponentName,
+                                    redirectTo:'',
+                                    pathMatch:'full|startsWith'
+                                    children:[]
+                                }
+
+                Routes          Route[]
+
+                forRoot(Routes)
+
+                router-outlet   a inbuilt component that will be replaced with the matchign component.
+
+                routerLink          is a directive to hold a path on 'a' element
+
+                routerLinkActive    is a directive that hold teh css-class to be applied when a link is active.
+
+        RxJS
+            Reactive Javascript
+
+            it IS NOT 'ReactJS'
+
+            Reactive Javascript offers communication reactivly over asynchronous
+            operations.
+
+            let asynchronousJob = (observer) => {
+                //asynchronosu code 
+                //observer.next(val) is used to emit intermediate results
+                //observer.error(err) is sued to emit error in the mdi of job if any
+                //observer.complete() is sued to indicate the compeltion of the job.
+
+            }; 
+            
+            let  obr = new Observable(asynchronousJob);
+
+            obr.subscribe({
+                val => {//do soemthing with the emtied value},
+                err => {//error handling method},
+                () => {//what to do once the job is done}
+            });
