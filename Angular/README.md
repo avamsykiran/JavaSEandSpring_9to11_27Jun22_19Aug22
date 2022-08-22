@@ -278,3 +278,12 @@ Angular 11
                 err => {//error handling method},
                 () => {//what to do once the job is done}
             });
+
+        HttpClient
+
+            from HttpClientModule   '@angular/commons/http'
+
+            get(url) : Observable
+            put(url,reqBody) : Observable
+            post(url,reqBody) : Observable
+            delete(url) : Observable

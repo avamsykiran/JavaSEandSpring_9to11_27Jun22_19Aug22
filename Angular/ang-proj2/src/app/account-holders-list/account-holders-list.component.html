@@ -1,0 +1,31 @@
+<section class="container-fluid p-4 m-4">
+
+    <p class="alert alert-info p-4" *ngIf="!ahs && !err">
+        <strong>Please wait while loading data..!</strong>
+    </p>
+
+    <p class="alert alert-danger p-4" *ngIf="err">
+        <strong>{{err}}</strong>
+    </p>
+
+    <p class="alert alert-info p-4" *ngIf="ahs && ahs.length==0">
+        <strong>No records!</strong>
+    </p>
+
+    <table *ngIf="ahs && ahs.length>0" class="table table-border table-striped">
+        <thead>
+            <th>AccountHolder#</th>
+            <th>Full Name</th>
+            <th>Mobile</th>
+            <th>Mail Id</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ah of ahs">
+                <td class="text-end">{{ah.ahId}}</td>
+                <td >{{ah.fullName|uppercase}}</td>
+                <td >{{ah.mobile}}</td>
+                <td >{{ah.mailId|lowercase}}</td>
+            </tr>
+        </tbody>
+    </table>
+</section>

@@ -1,0 +1,25 @@
+<section class="container-fluid p-4">
+    <div class="col-sm-5 m-4 mx-auto">
+        <p class="alert alert-danger" *ngIf="errMsg">
+            <strong>{{errMsg}}</strong>
+        </p>
+
+        <form #f="ngForm" (ngSubmit)="formSubmitted()">
+            <div>
+                <label class="form-control-label">Full Name</label>
+                <input type="text" [(ngModel)]="ah.fullName" name="fc1" required class="form-control" />
+            </div>
+            <div>
+                <label class="form-control-label">Mobile</label>
+                <input type="number" [(ngModel)]="ah.mobile" name="fc2" required class="form-control" />
+            </div>
+            <div>
+                <label class="form-control-label">Mail Id</label>
+                <input type="email" [(ngModel)]="ah.mailId" name="fc3" required class="form-control" />
+            </div>
+            <div class="text-end">
+                <button [disabled]="f.invalid" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</section>
